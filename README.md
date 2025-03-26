@@ -25,6 +25,13 @@
 ### 설치 방법 (Package Manager)
 Unity 메뉴 > Window > Package Manager > `+` 버튼 > "Add package from git URL"
 
+## 📄 제3자 라이선스
+
+### JSONObject (by Matt Schoen)
+- License: [LGPL 2.1](http://www.opensource.org/licenses/lgpl-2.1.php)
+- 포함 위치: `Dependencies/JSONObject`
+- 목적: Google API 요청 시 JSON 구성 처리
+
 
 ## 🧪 사용 예시
 ```csharp
