@@ -18,6 +18,14 @@
 2. `Resources` 폴더에 `GoogleVoiceConfig` 생성 후 API Key 입력
 3. `IGoogleTTSService`, `IGoogleSTTService`를 통해 바로 사용 가능
 
+## 🔗 필수 의존성
+
+본 SDK는 [UniTask](https://github.com/Cysharp/UniTask)가 필요합니다.
+
+### 설치 방법 (Package Manager)
+Unity 메뉴 > Window > Package Manager > `+` 버튼 > "Add package from git URL"
+
+
 ## 🧪 사용 예시
 ```csharp
 var tts = new GoogleTTSService(apiKey);
