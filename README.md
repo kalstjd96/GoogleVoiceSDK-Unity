@@ -82,6 +82,8 @@ sttService = new GoogleSTTService(config.ApiKey, sttUrl);
 
 var audioClip = await ttsService.SynthesizeSpeech("안녕하세요!");
 var resultText = await sttService.RecognizeSpeech();
+```
+
 📄 라이센스
 ✅ Google Cloud TTS
 
