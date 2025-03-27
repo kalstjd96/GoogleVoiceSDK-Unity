@@ -1,8 +1,24 @@
 # 🎙 Google Voice SDK for Unity
 
 Unity에서 Google Cloud의 STT(Speech-to-Text), TTS(Text-to-Speech) 기능을 쉽게 사용할 수 있도록 모듈화한 SDK입니다.
+API Key만 등록하면 바로 음성 인식 및 음성 합성 기능을 구현할 수 있습니다.
 
-> 음성 기반 대화, 텍스트 변환, AI 응답 처리 등을 손쉽게 Unity에서 구현하세요!
+---
+
+## 설치 방법
+1. 우측 Release 페이지에 들어가 .unitypackage 파일을 다운로드합니다.
+2. Unity에서 Assets > Import Package > Custom Package... 선택 후 가져오기
+3. Resources/GoogleVoiceConfig.asset 생성하여 API Key 등록
+4. Sample/GoogleVoiceSample 씬 실행 또는 GoogleVoiceExample 사용
+
+## 사전 준비
+1. Google Cloud Speech-to-Text, Text-to-Speech API 활성화
+2. 발급한 API Key를 .asset 파일에 등록
+
+## ✔ 필수 외부 패키지 !! 
+1. Newtonsoft.Json	: Unity 패키지 매니저에서 com.unity.nuget.newtonsoft-json 등록
+2. UniTask	: .unitypackage 파일 직접 다운로드 후 가져오기 (https://github.com/Cysharp/UniTask)
+
 
 ---
 
@@ -19,39 +35,29 @@ Unity에서 Google Cloud의 STT(Speech-to-Text), TTS(Text-to-Speech) 기능을 �
 
 ## 📦 패키지 구성
 
-GoogleVoiceSDK/ ├── Config/ # API Key 설정용 ScriptableObject ├── Dependencies/ # JSONObject, REST API 등 유틸성 코드 ├── Plugins/ # GoogleVoiceSDK.dll (패키지 배포 시) ├── Sample/ # 사용 예제 코드 ├── README.md # 사용법 가이드
+Plugins/GoogleVoice
+→ 모듈화된 GoogleTTSService, GoogleSTTService
 
-yaml
-복사
-편집
+Config/GoogleVoiceConfig.asset
+→ API Key 입력용 ScriptableObject
 
----
+Sample/GoogleVoiceExample.cs
+→ UI 버튼으로 TTS/STT 테스트용 예제
 
-## 🔧 설치 방법
+Dependencies
+→ 커스텀 JSONObject, RestAPI 유틸 포함
 
-### 1. Unity 프로젝트에 `.unitypackage` 임포트  
-[Releases 탭](../../releases)에서 최신 `.unitypackage` 파일을 다운로드하세요.
+## 📜 라이선스 안내
+JSONObject는 LGPL 2.1 기반입니다.
 
----
+JSONObject class v.1.4.1 for use with Unity
+Copyright Matt Schoen 2010 - 2013
 
-### 2. 필수 의존성 추가
-
-#### ✔ Newtonsoft.Json 설치
-Unity 패키지 매니저에서 아래 경로로 설치:
-com.unity.nuget.newtonsoft-json
-
-yaml
-복사
-편집
-
-#### ✔ UniTask 설치  
-[https://github.com/Cysharp/UniTask/releases](https://github.com/Cysharp/UniTask/releases)  
-→ `.unitypackage` 파일 다운로드 후 Unity에 임포트
-
-#### ✔ JSONObject  
 본 패키지는 [Matt Schoen의 JSONObject (v1.4.1)](http://www.opensource.org/licenses/lgpl-2.1.php)를 기반으로 작성되었습니다.  
 해당 소스는 LGPL 2.1에 따라 자유롭게 사용할 수 있습니다.  
 라이센스 전문은 `Dependencies/JSONObject/LICENSE.txt` 참조 바랍니다.
+
+---
 
 ---
 
