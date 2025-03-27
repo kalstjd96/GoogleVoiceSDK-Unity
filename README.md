@@ -1,53 +1,72 @@
 # 🎙 Google Voice SDK for Unity
 
-Unity에서 Google Cloud의 STT(Speech-to-Text), TTS(Text-to-Speech) 기능을 쉽게 사용할 수 있도록 모듈화한 SDK입니다.
+Unity에서 Google Cloud의 STT(Speech-to-Text), TTS(Text-to-Speech) 기능을 간편하게 사용할 수 있도록 모듈화한 SDK입니다.
 API Key만 등록하면 바로 음성 인식 및 음성 합성 기능을 구현할 수 있습니다.
+---
+
+## 1. 설치 방법
+1.  Releases 탭에서 .unitypackage 파일 다운로드
+2. Unity에서 Assets > Import Package > Custom Package... 선택 후 가져오기
+3. Resources/GoogleVoiceConfig.asset 생성하여 API Key 등록
+4. Sample/GoogleVoiceSample 씬 실행(GoogleVoiceConfig.asset 변수에 등록) 또는 GoogleVoiceExample 사용
 
 ---
 
-## 설치 방법
-1. 우측 Release 페이지에 들어가 .unitypackage 파일을 다운로드합니다.
-2. Unity에서 Assets > Import Package > Custom Package... 선택 후 가져오기
-3. Resources/GoogleVoiceConfig.asset 생성하여 API Key 등록
-4. Sample/GoogleVoiceSample 씬 실행 또는 GoogleVoiceExample 사용
-
-## 사전 준비
+## 2. 사전 준비
 1. Google Cloud Speech-to-Text, Text-to-Speech API 활성화
 2. 발급한 API Key를 .asset 파일에 등록
 
-## ✔ 필수 외부 패키지 !! 
-1. Newtonsoft.Json	: Unity 패키지 매니저에서 com.unity.nuget.newtonsoft-json 등록
+---
+
+## ✔ 3. 외부 의존 패키지 !! 
+1. Newtonsoft.Json	: Unity 패키지 매니저 -> com.unity.nuget.newtonsoft-json 등록
 2. UniTask	: .unitypackage 파일 직접 다운로드 후 가져오기 (https://github.com/Cysharp/UniTask)
 
+---
+
+## 4. 주요 기능
+
+- Google Text-to-Speech (TTS)
+- Google Speech-to-Text (STT)
+- ScriptableObject 기반 API 키 관리
+- UniTask 기반 비동기 처리
+- REST API 요청 분리 (GoogleRequestHandler)
+- 샘플 UI 포함
 
 ---
 
-## 🚀 Features
+## 5. 패키지 구성
+'''c#
+GoogleSDK/
+├── Config/
+│   └── GoogleVoiceConfig.asset    // API Key 입력
+├── Dependencies/
+│   ├── JSONObject/                // JSON 유틸
+│   └── RestAPI/                   // API 통신 유틸
+├── Plugins/
+│   └── GoogleVoice/              // GoogleTTSService, GoogleSTTService
+├── Sample/
+│   └── GoogleVoiceExample.cs     // 테스트용 예제
+└── Scene/
+    └── GoogleVoiceSample.unity   // 샘플 씬
+'''
 
-- ✅ Google Text-to-Speech (TTS)
-- ✅ Google Speech-to-Text (STT)
-- ✅ ScriptableObject 기반 API 키 관리
-- ✅ 비동기 처리 (UniTask)
-- ✅ REST API 모듈화 (GoogleRequestHandler)
-- ✅ 샘플 UI 포함
+### 5-1 예제 적용 가이드
+1. 빈 GameObject에 GoogleVoiceExample.cs 추가
+2. GoogleVoiceConfig.asset을 인스펙터에 드래그하여 연결
+3. TTS / STT 버튼을 UI 버튼에 할당
+4. 빌드 or 플레이 → 음성 인식 / 음성 합성 동작 확인
+
+### 5-2 API Key 설정
+1. `Resources/` 폴더를 프로젝트 내에 생성합니다.
+2. `GoogleVoiceConfig.asset` 파일을 생성합니다.  
+   → 위치: `Assets/Resources/GoogleVoiceConfig.asset`
+
+3. `GoogleVoiceConfig` 파일에 **Google Cloud API Key**를 입력합니다.
 
 ---
 
-## 📦 패키지 구성
-
-Plugins/GoogleVoice
-→ 모듈화된 GoogleTTSService, GoogleSTTService
-
-Config/GoogleVoiceConfig.asset
-→ API Key 입력용 ScriptableObject
-
-Sample/GoogleVoiceExample.cs
-→ UI 버튼으로 TTS/STT 테스트용 예제
-
-Dependencies
-→ 커스텀 JSONObject, RestAPI 유틸 포함
-
-## 📜 라이선스 안내
+## 6. 라이선스 안내
 JSONObject는 LGPL 2.1 기반입니다.
 
 JSONObject class v.1.4.1 for use with Unity
@@ -59,68 +78,9 @@ Copyright Matt Schoen 2010 - 2013
 
 ---
 
----
-
-### 3. API Key 설정
-
-1. `Resources/` 폴더를 프로젝트 내에 생성합니다.
-2. `GoogleVoiceConfig.asset` 파일을 생성합니다.  
-   → 위치: `Assets/Resources/GoogleVoiceConfig.asset`
-
-3. `GoogleVoiceConfig` 파일에 **Google Cloud API Key**를 입력합니다.
-
----
-
-### 4. 예제 적용 방법
-
-1. `Sample/GoogleVoiceExample.cs` 스크립트를 빈 오브젝트에 추가
-2. `GoogleVoiceConfig.asset`을 인스펙터에 드래그하여 연결
-3. `TTS 버튼`과 `STT 버튼`에 유니티 UI Button 연결
-4. 빌드 후 버튼 클릭 → 음성 인식 / 음성 출력 작동 확인 🎤🎧
-
----
-
-## ✅ 사용 예시 코드
-
-```csharp
-ttsService = new GoogleTTSService(config.ApiKey, ttsUrl);
-sttService = new GoogleSTTService(config.ApiKey, sttUrl);
-
-var audioClip = await ttsService.SynthesizeSpeech("안녕하세요!");
-var resultText = await sttService.RecognizeSpeech();
-```
-
-📄 라이센스
-✅ Google Cloud TTS
-
-✅ Google Cloud STT
-
-✅ JSONObject by Matt Schoen (LGPL 2.1)
-
-🙌 개발자 코멘트
-이 프로젝트는 음성 기반 인터페이스를 Unity에서 손쉽게 구현할 수 있도록
-Google Cloud API를 모듈화하고, 필요한 설정만으로 바로 사용할 수 있도록 설계되었습니다.
-
-포트폴리오나 실무 적용을 고려하여 구조화하였으며,
-비개발자도 빠르게 적용할 수 있도록 예제까지 포함했습니다.
-
-Made with ☕ by [YourName] | [your.email@example.com]
-
-yaml
-복사
-편집
-
----
-
-## ✨ 추가 팁
-
-- `GoogleVoiceSDK.unitypackage`도 함께 GitHub Releases에 업로드하면 좋아
-- 포트폴리오에는 README + 링크 + 스크린샷 or GIF 첨부도 최고
-- 필요하면 영문 README 버전도 도와줄게
-
----
-
-필요하면 `.unitypackage` 자동 추출 스크립트도 만들 수 있어.  
-**지금 이 상태에서 올리면 진짜 완성형 SDK야!** 😎
-
-원하는 커스터마이징 있으면 말해줘!
+💬 향후 계획
+* WebGL 지원 확대
+* 녹음 길이 조절
+* 멀티 언어 설정 등 확장
+  
+Made with ☕ by [MinSung] | [kalstjd96@naver.com]
