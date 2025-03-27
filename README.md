@@ -1,7 +1,8 @@
 # 🎙 Google Voice SDK for Unity
 
-Unity에서 Google Cloud의 STT(Speech-to-Text), TTS(Text-to-Speech) 기능을 간편하게 사용할 수 있도록 모듈화한 SDK입니다.
-API Key만 등록하면 바로 음성 인식 및 음성 합성 기능을 구현할 수 있습니다.
+**Unity에서 Google Cloud의 STT(Speech-to-Text), TTS(Text-to-Speech) 기능을 간편하게 사용할 수 있도록 모듈화한 SDK입니다.
+API Key만 등록하면 바로 음성 인식 및 음성 합성 기능을 구현할 수 있습니다.**
+
 ---
 
 ## 1. 설치 방법
@@ -36,20 +37,20 @@ API Key만 등록하면 바로 음성 인식 및 음성 합성 기능을 구현�
 ---
 
 ## 5. 패키지 구성
-'''c#
-GoogleSDK/
-├── Config/
-│   └── GoogleVoiceConfig.asset    // API Key 입력
-├── Dependencies/
-│   ├── JSONObject/                // JSON 유틸
-│   └── RestAPI/                   // API 통신 유틸
-├── Plugins/
-│   └── GoogleVoice/              // GoogleTTSService, GoogleSTTService
-├── Sample/
-│   └── GoogleVoiceExample.cs     // 테스트용 예제
-└── Scene/
-    └── GoogleVoiceSample.unity   // 샘플 씬
-'''
+
+GoogleSDK/  <br>
+├── Config/  <br>
+│   └── GoogleVoiceConfig.asset    // API Key 입력  <br>
+├── Dependencies/  <br>
+│   ├── JSONObject/                // JSON 유틸  <br>
+│   └── RestAPI/                   // API 통신 유틸  <br>
+├── Plugins/  <br>
+│   └── GoogleVoice/              // GoogleTTSService, GoogleSTTService  <br>
+├── Sample/  <br>
+│   └── GoogleVoiceExample.cs     // 테스트용 예제  <br>
+└── Scene/  <br>
+    └── GoogleVoiceSample.unity   // 샘플 씬  <br>
+
 
 ### 5-1 예제 적용 가이드
 1. 빈 GameObject에 GoogleVoiceExample.cs 추가
