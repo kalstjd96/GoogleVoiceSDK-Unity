@@ -67,18 +67,6 @@ GoogleSDK/  <br>
 
 ---
 
-## 6. 라이선스 안내
-JSONObject는 LGPL 2.1 기반입니다.
-
-JSONObject class v.1.4.1 for use with Unity
-Copyright Matt Schoen 2010 - 2013
-
-본 패키지는 [Matt Schoen의 JSONObject (v1.4.1)](http://www.opensource.org/licenses/lgpl-2.1.php)를 기반으로 작성되었습니다.  
-해당 소스는 LGPL 2.1에 따라 자유롭게 사용할 수 있습니다.  
-라이센스 전문은 `Dependencies/JSONObject/LICENSE.txt` 참조 바랍니다.
-
----
-
 💬 향후 계획
 * WebGL 지원 확대
 * 녹음 길이 조절
