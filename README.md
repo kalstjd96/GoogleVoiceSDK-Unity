@@ -42,7 +42,6 @@ GoogleSDK/  <br>
 ├── Config/  <br>
 │   └── GoogleVoiceConfig.asset    // API Key 입력  <br>
 ├── Dependencies/  <br>
-│   ├── JSONObject/                // JSON 유틸  <br>
 │   └── RestAPI/                   // API 통신 유틸  <br>
 ├── Plugins/  <br>
 │   └── GoogleVoice/              // GoogleTTSService, GoogleSTTService  <br>
