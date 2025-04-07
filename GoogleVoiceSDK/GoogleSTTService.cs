@@ -43,7 +43,7 @@ namespace GoogleSDK.GoogleVoice
         {
             if (Microphone.IsRecording(null))
             {
-                Debug.LogError("                    Դϴ !");
+                Debug.LogError("현재 녹음이 진행 중입니다!");
                 return null;
             }
 
