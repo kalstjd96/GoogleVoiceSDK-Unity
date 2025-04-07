@@ -2,7 +2,7 @@
 * @author kalstjd96@naver.com
 * @brief
 * @version 0.1
-* @date 2025-03-22 01:06:25Z
+* @date 2025-04-06 01:06:25Z
 *
 * @copyright Copyright 2025 Kim MinSung, Co., LTD. All rights reserved.
 *
@@ -11,7 +11,6 @@ using Cysharp.Threading.Tasks;
 using GoogleSDK.GoogleVoice.Internal;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Android;
 using Utility.RestApi;
@@ -42,12 +41,19 @@ namespace GoogleSDK.GoogleVoice
 
         public async UniTask<AudioClip> SynthesizeSpeech(string text)
         {
-            var requestData = new JSONObject(new Dictionary<string, JSONObject>
-        {
-            { "input", new JSONObject(new Dictionary<string, string> { { "text", text } }) },
-            { "voice", new JSONObject(new Dictionary<string, string> { { "languageCode", "ko-KR" }, { "ssmlGender", "NEUTRAL" } }) },
-            { "audioConfig", new JSONObject(new Dictionary<string, string> { { "audioEncoding", "LINEAR16" } }) }
-        });
+            var requestData = new
+            {
+                input = new { text = text },
+                voice = new
+                {
+                    languageCode = "ko-KR",
+                    ssmlGender = "NEUTRAL"
+                },
+                audioConfig = new
+                {
+                    audioEncoding = "LINEAR16"
+                }
+            };
 
             RestApiRequestOptions options = new RestApiRequestOptions(apiKey, Defines.RequestMethod.Post)
                 .SetHeader(new() { ContentType = Defines.Header.ContentType.Application_Json })
@@ -59,7 +65,7 @@ namespace GoogleSDK.GoogleVoice
             var response = JsonConvert.DeserializeObject<GoogleTTSResponse>(transfer.Body);
             if (response == null || string.IsNullOrEmpty(response.audioContent))
             {
-                Debug.LogError("TTS   ȯ     :          ");
+                Debug.LogError("TTS 변환 실패: 응답 없음");
                 return null;
             }
 
@@ -70,7 +76,7 @@ namespace GoogleSDK.GoogleVoice
             }
             catch (Exception ex)
             {
-                Debug.LogError("Base64    ڵ      : " + ex.Message);
+                Debug.LogError("Base64 디코딩 실패: " + ex.Message);
                 return null;
             }
         }
