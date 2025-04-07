@@ -2,7 +2,7 @@
 * @author kalstjd96@naver.com
 * @brief
 * @version 0.1
-* @date 2025-03-22 01:06:25Z
+* @date 2025-04-06 01:06:25Z
 *
 * @copyright Copyright 2025 Kim MinSung, Co., LTD. All rights reserved.
 *
@@ -49,7 +49,7 @@ namespace GoogleSDK.GoogleVoice
 
             if (Microphone.devices.Length == 0)
             {
-                Debug.LogError("    ũ   ġ   ã           ϴ ");
+                Debug.LogError("마이크 장치를 찾을 수 없습니다");
                 return null;
             }
 
@@ -60,7 +60,7 @@ namespace GoogleSDK.GoogleVoice
             byte[] audioData = ConvertAudioClipToByteArray(recordedClip);
             if (audioData == null || audioData.Length == 0)
             {
-                Debug.LogError("                  Ͱ       ֽ  ϴ ");
+                Debug.LogError("녹음된 오디오 데이터가 비어 있습니다");
                 return null;
             }
 
@@ -71,7 +71,7 @@ namespace GoogleSDK.GoogleVoice
         {
             if (audioData == null || audioData.Length == 0)
             {
-                Debug.LogError("                  Ͱ       ϴ ");
+                Debug.LogError("전송할 오디오 데이터가 없습니다");
                 return null;
             }
 
@@ -103,7 +103,7 @@ namespace GoogleSDK.GoogleVoice
             var response = JsonConvert.DeserializeObject<GoogleSTTResponse>(transfer.Body);
             if (response?.results == null || response.results.Length == 0)
             {
-                Debug.LogError("STT             ϴ .");
+                Debug.LogError("STT 응답이 없습니다.");
                 return null;
             }
 
@@ -115,7 +115,7 @@ namespace GoogleSDK.GoogleVoice
         {
             if (clip == null)
             {
-                Debug.LogError("AudioClip is null Դϴ .");
+                Debug.LogError("AudioClip is null입니다.");
                 return null;
             }
 
